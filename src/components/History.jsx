@@ -1,10 +1,20 @@
-export default function History({history, setSearch}){
-    const handleChange =(e)=>{
-        setSearch(e.target.value)
+export default function History({history, setSearch, setFocused}){
+
+    const handleClick = (searchTerm) => {
+        setSearch(searchTerm)
+        setFocused(false)
     }
+
     return (
-         <select onChange={handleChange}>
-            {history?.map((item, i) => <option key={i} value={item}>{item}</option>)}
-        </select>
+        <div className="history-list">
+            <h4>Tidligere søk:</h4>
+            <ul>
+                {history?.map((item, i) => (
+                    <li key={i} onClick={() => handleClick(item)} className="history-item">
+                        {item}
+                    </li>
+                ))}
+            </ul>
+        </div>
     )
 }
