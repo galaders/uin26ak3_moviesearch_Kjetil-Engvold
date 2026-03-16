@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import History from "../components/History"
+import NoImage from "../assets/NoImage.png"
 
 export default function Home(){
     const navigate = useNavigate() 
@@ -101,26 +102,25 @@ export default function Home(){
             }
             {/* Viser History-komponenten hvis input er fokusert */}
             <button type="submit">Movie Search</button>
-
-
-            <>
-                {data?.filter((filmer, index, self) => 
-                    self.findIndex(f => f.imdbID === filmer.imdbID) === index
-                    // Fjerner duplikater basert på imdbID
-                ).map((filmer) => (
-                    <article 
-                        key={filmer.imdbID} 
-                        className="movie-card" 
-                        onClick={() => navigate(`/${filmer.imdbID}`)}
-                        // Klikk på film → gå til detaljside
-                    >
-                        <img src={filmer.Poster} alt={filmer.Title} /> 
-                        <h3>{filmer.Title}</h3> 
-                        <p className="year">{filmer.Year}</p>
-                    </article>
-                ))}
-            </>
         </form>
+
+        <div className="movies-grid">
+            {data?.filter((filmer, index, self) => 
+                self.findIndex(f => f.imdbID === filmer.imdbID) === index
+                // Fjerner duplikater basert på imdbID
+            ).map((filmer) => (
+                <article 
+                    key={filmer.imdbID} 
+                    className="movie-card"
+                >
+                   <Link className="link" to={`/${filmer.imdbID}`}><img className="image" src={filmer.Poster !== "N/A" ? filmer.Poster : NoImage } 
+        onError={(e)=> {e.target.src= NoImage}}  // Kode fra Amanda Torstensen til å fikse problem med utl for bilder som kan ikke bli lest
+        alt={filmer.Title} /></Link> 
+                    <h3>{filmer.Title}</h3> 
+                    <p className="year">{filmer.Year}</p>
+                </article>
+            ))}
+        </div>
     </main>
     )
 }

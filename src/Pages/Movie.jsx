@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import NoImage from "../assets/NoImage.png"
 
 export default function Movie(){
     const { movie } = useParams()
@@ -52,9 +53,10 @@ export default function Movie(){
         <main className="movie-detail">
 
             <img 
-                src={movieData.Poster} 
+                src={movieData.Poster !== "N/A" ? movieData.Poster : NoImage} 
                 alt={movieData.Title} 
                 className="detail-poster" 
+                onError={(e) => { e.target.src = NoImage }} 
             />
 
             <h1>{movieData.Title}</h1>
