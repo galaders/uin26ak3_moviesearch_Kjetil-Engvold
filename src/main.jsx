@@ -1,6 +1,3 @@
-// det er en error med filen Daniel Craig vs James Bond 
-// men det er at den ikke finner bilde av den og det ser ut som api har mistet 
-// den, ble bedt av studasident å se over den error "thor"
 // bruk firefox for å se åsen jeg laget siden 
 // den ser grei ut på brave også men vet ikke om flere en de 2
 // fik hjelp av thor me å få started den opp etter første søking bit 
@@ -12,6 +9,7 @@
 
 // Ai chaten er på Visual Studio Code så jeg lager en mappe i 
 // src som hetter AiBildemappe hvor jeg vise bilde av chatten som jeg brukte
+// assets hvor bilde for ingen bilde og logoen til siden ligger
 
 
 
